@@ -81,3 +81,13 @@ def orthogonal_matrix(n):
     assert np.allclose(A @ A.T, np.eye(n))
     assert np.allclose(A.T @ A, np.eye(n))
     return A
+
+
+def symmetric_matrix_with_eigenvalues(eigenvalues):
+    n = len(eigenvalues)
+    Q = orthogonal_matrix(n)
+    D = np.diag(eigenvalues)
+    A = Q @ D @ Q.T
+    A = (A + A.T) / 2
+    assert np.all(A == A.T)
+    return A

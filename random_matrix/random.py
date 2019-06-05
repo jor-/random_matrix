@@ -32,3 +32,13 @@ def hermitian_matrix(n, dense=True, complex_values=False, random_value_function=
 
     assert np.all(np.isreal(A.diagonal()))
     return A
+
+
+def lower_triangle_matrix(n, dense=True, complex_values=False, random_value_function=None):
+    A = matrix(n, n, dense=dense, complex_values=complex_values,
+               random_value_function=random_value_function)
+    if dense:
+        A = np.tril(A)
+    else:
+        A = scipy.sparse.tril(A)
+    return A

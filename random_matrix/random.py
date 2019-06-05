@@ -17,3 +17,18 @@ def matrix(n, m, dense=True, complex_values=False, random_value_function=None):
         if complex_values:
             A.data += random_value_function(len(B.data)) * 1j
     return A
+
+
+def hermitian_matrix(n, dense=True, complex_values=False, random_value_function=None):
+    A = matrix(n, n, dense=dense, complex_values=complex_values,
+               random_value_function=random_value_function)
+    A = A + A.transpose().conj()
+
+    if complex_values:
+        for i in range(n):
+            A_ii = A[i, i]
+            if A_ii != 0:
+                A[i, i] = A_ii.real
+
+    assert np.all(np.isreal(A.diagonal()))
+    return A

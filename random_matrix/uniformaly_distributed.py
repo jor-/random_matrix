@@ -49,3 +49,9 @@ def symmetric_matrix_with_eigenvalues(n, eigenvalue_lower_bound, eigenvalue_uppe
     assert not at_least_one_negative_eigenvalue or np.any(eigenvalues < 0)
     assert not at_least_one_positive_eigenvalue or np.any(eigenvalues > 0)
     return random_matrix.random.symmetric_matrix_with_eigenvalues(eigenvalues)
+
+
+def correlation_matrix(n):
+    eigenvalues = np.random.rand(n)
+    eigenvalues *= n / eigenvalues.sum()
+    return random_matrix.random.correlation_matrix_with_eigenvalues(eigenvalues)
